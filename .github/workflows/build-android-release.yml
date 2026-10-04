@@ -34,7 +34,7 @@ jobs:
           else
             echo "React Web repository detected. Generating Android project from manifest..."
             # Setup node to run the project generator
-            npm install
+            npm install --legacy-peer-deps
             npm run generate:android
             echo "working_dir=android-build" >> $GITHUB_OUTPUT
           fi

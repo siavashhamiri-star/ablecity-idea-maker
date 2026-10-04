@@ -113,11 +113,31 @@ android {
         create("release") {
             val keystorePath = System.getenv("KEYSTORE_FILE") ?: "release-key.jks"
             val keystoreFile = rootProject.file(keystorePath)
-            val storePass = System.getenv("KEYSTORE_PASSWORD")
-            val kAlias = System.getenv("KEY_ALIAS")
-            val kPass = System.getenv("KEY_PASSWORD")
+            val storePass = System.getenv("KEYSTORE_PASSWORD") ?: "tavana_release_pass_2026"
+            val kAlias = System.getenv("KEY_ALIAS") ?: "tavana_key"
+            val kPass = System.getenv("KEY_PASSWORD") ?: "tavana_release_pass_2026"
 
-            if (keystoreFile.exists() && !storePass.isNullOrBlank() && !kAlias.isNullOrBlank() && !kPass.isNullOrBlank()) {
+            // 100% Automated Keystore Generation if file does not exist
+            if (!keystoreFile.exists()) {
+                try {
+                    val process = ProcessBuilder(
+                        "keytool", "-genkey", "-v",
+                        "-keystore", keystoreFile.absolutePath,
+                        "-alias", kAlias,
+                        "-keyalg", "RSA",
+                        "-keysize", "2048",
+                        "-validity", "10000",
+                        "-storepass", storePass,
+                        "-keypass", kPass,
+                        "-dname", "CN=TavanaRelease, OU=Forge, O=Tavana, L=Tehran, ST=Tehran, C=IR"
+                    ).redirectErrorStream(true).start()
+                    process.waitFor()
+                } catch (e: Exception) {
+                    println("Keystore auto-generation skipped: \${e.message}")
+                }
+            }
+
+            if (keystoreFile.exists()) {
                 storeFile = keystoreFile
                 storePassword = storePass
                 keyAlias = kAlias
@@ -128,16 +148,12 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = true
-            isShrinkResources = true
+            isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            val releaseSigning = signingConfigs.getByName("release")
-            if (releaseSigning.storeFile != null) {
-                signingConfig = releaseSigning
-            }
+            signingConfig = signingConfigs.getByName("release")
         }
         debug {
             isMinifyEnabled = false
