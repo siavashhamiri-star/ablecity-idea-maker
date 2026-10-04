@@ -1,0 +1,105 @@
+name: Build & Sign Android APK & AAB
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+    inputs:
+      build_type:
+        description: 'Build Type (release or debug)'
+        required: true
+        default: 'release'
+        type: choice
+        options:
+          - release
+          - debug
+
+jobs:
+  build:
+    name: Build Android Packages
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: 'gradle'
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Grant Execute Permission to Gradle Wrapper
+        run: |
+          if [ -f gradlew ]; then
+            chmod +x gradlew
+          else
+            gradle wrapper
+            chmod +x gradlew
+          fi
+
+      - name: Configure Keystore & Signing Secrets
+        id: signing_setup
+        run: |
+          KEYSTORE_FILE="release-key.jks"
+          
+          # If Base64 Keystore secret exists, decode it safely
+          if [ -n "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" ]; then
+            echo "Decoding Keystore from GitHub Secrets..."
+            echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 --decode > "$KEYSTORE_FILE"
+            echo "KEYSTORE_FILE=$KEYSTORE_FILE" >> $GITHUB_ENV
+            echo "KEYSTORE_PASSWORD=${{ secrets.KEYSTORE_PASSWORD }}" >> $GITHUB_ENV
+            echo "KEY_ALIAS=${{ secrets.KEY_ALIAS }}" >> $GITHUB_ENV
+            echo "KEY_PASSWORD=${{ secrets.KEY_PASSWORD }}" >> $GITHUB_ENV
+          else
+            # CI Automated Generation if secrets are not set yet
+            echo "Secrets not found. Generating automated CI Keystore..."
+            PASS="CI_AutoSecret_${RANDOM}_${RANDOM}"
+            keytool -genkey -v -keystore "$KEYSTORE_FILE" \
+              -alias "tavana_ci_key" \
+              -keyalg RSA \
+              -keysize 2048 \
+              -validity 10000 \
+              -storepass "$PASS" \
+              -keypass "$PASS" \
+              -dname "CN=TavanaForge, OU=CI, O=Tavana, L=Tehran, ST=Tehran, C=IR"
+            
+            echo "KEYSTORE_FILE=$KEYSTORE_FILE" >> $GITHUB_ENV
+            echo "KEYSTORE_PASSWORD=$PASS" >> $GITHUB_ENV
+            echo "KEY_ALIAS=tavana_ci_key" >> $GITHUB_ENV
+            echo "KEY_PASSWORD=$PASS" >> $GITHUB_ENV
+          fi
+
+      - name: Build Release APK
+        run: |
+          ./gradlew assembleRelease --stacktrace
+
+      - name: Build Release AAB (Android App Bundle for Google Play & Bazaar)
+        run: |
+          ./gradlew bundleRelease --stacktrace
+
+      - name: Verify Artifacts
+        run: |
+          echo "=== Built Artifacts ==="
+          ls -lh app/build/outputs/apk/release/ || true
+          ls -lh app/build/outputs/bundle/release/ || true
+
+      - name: Upload Signed APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: tavana-signed-release-apk
+          path: app/build/outputs/apk/release/*.apk
+          retention-days: 14
+
+      - name: Upload Signed AAB Bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: tavana-signed-release-aab
+          path: app/build/outputs/bundle/release/*.aab
+          retention-days: 14
