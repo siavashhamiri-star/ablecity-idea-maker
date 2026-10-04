@@ -49,6 +49,7 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
+          gradle-version: '8.7'
           build-root-directory: ${{ steps.prep.outputs.working_dir }}
 
       - name: Setup Android SDK
@@ -100,12 +101,12 @@ jobs:
       - name: Build Release APK
         working-directory: ${{ steps.prep.outputs.working_dir }}
         run: |
-          ./gradlew assembleRelease --stacktrace || gradle assembleRelease --stacktrace
+          gradle assembleRelease --stacktrace || ./gradlew assembleRelease --stacktrace
 
       - name: Build Release AAB (Android App Bundle for Google Play & Bazaar)
         working-directory: ${{ steps.prep.outputs.working_dir }}
         run: |
-          ./gradlew bundleRelease --stacktrace || gradle bundleRelease --stacktrace
+          gradle bundleRelease --stacktrace || ./gradlew bundleRelease --stacktrace
 
       - name: Verify Artifacts
         working-directory: ${{ steps.prep.outputs.working_dir }}
