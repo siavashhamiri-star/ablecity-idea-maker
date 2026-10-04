@@ -1,0 +1,396 @@
+export type SupportedLang = 'fa' | 'en' | 'ar' | 'es' | 'zh' | 'ru';
+
+export interface TranslationDict {
+  dir: 'rtl' | 'ltr';
+  brandSubtitle: string;
+  badgeMvp: string;
+  heroTitle1: string;
+  heroTitleHighlight: string;
+  heroSubtitle: string;
+  ideaInputPlaceholder: string;
+  startBuildingBtn: string;
+  quickIdeasLabel: string;
+  quickIdeas: string[];
+  emptyOrTemplateBtn: string;
+  seeDemoBtn: string;
+  pipelineStatus: string;
+  pipelineCore: string;
+  step1Title: string;
+  step1Desc: string;
+  step2Title: string;
+  step2Desc: string;
+  step3Title: string;
+  step3Desc: string;
+  step4Title: string;
+  step4Desc: string;
+  roadmapTitle: string;
+  roadmapDesc: string;
+  activeMvpTag: string;
+  comingSoonTag: string;
+  futureTag: string;
+  howItWorksTitle: string;
+  howItWorksDesc: string;
+  magicDemoTitle: string;
+  magicDemoDesc: string;
+  openInStudioBtn: string;
+  previewTab: string;
+  manifestTab: string;
+  whyForgeTitle: string;
+  whyForgeDesc: string;
+  finalCtaTitle: string;
+  finalCtaDesc: string;
+  finalCtaBtn: string;
+  incomeGuideBtn: string;
+  incomeGuideTitle: string;
+  incomeGuideSubtitle: string;
+  accessibilityBtn: string;
+  androidGradleBtn: string;
+  templatesBtn: string;
+  studioBtn: string;
+  homeBtn: string;
+  backToHomeTooltip: string;
+}
+
+export const TRANSLATIONS: Record<SupportedLang, TranslationDict> = {
+  // فارسی: لحن کوچه و بازاری، رفاقتی، شیرین، خاکی، شفاف و پرانرژی!
+  fa: {
+    dir: 'rtl',
+    brandSubtitle: 'کوره رفاقتی ساخت کار و بار دیجیتال',
+    badgeMvp: 'دمت گرم اومدی! کوره سایت‌سازی توانا روشنه، بفرما تو',
+    heroTitle1: 'ایده‌تو رو کن؛',
+    heroTitleHighlight: 'کار درست و درمون تحویل بگیر!',
+    heroSubtitle: 'بی‌خیال کدنویسی‌های پیچیده و حرف‌های قلمبه‌سلمبه! ایده‌تو به زبون خودت بگو، ما یه سایت لوکس، تر و تمیز با خروجی زیپ و اپ اندروید بهت تحویل می‌دیم. دانلود بزن، حلالت!',
+    ideaInputPlaceholder: 'مثلاً: یه سایت باحال می‌خوام برای تالار عروسی با قیمت و شماره تماس...',
+    startBuildingBtn: 'بزن بریم بسازیم!',
+    quickIdeasLabel: 'ایده‌های نقد و آماده:',
+    quickIdeas: [
+      'سایت تالار پذیرایی و عروسی لوکس',
+      'لندینگ کلینیک پوست و زیبایی',
+      'سایت شرکتی مهندسی و بازرگانی',
+      'نمونه‌کار استودیو دیزاین',
+    ],
+    emptyOrTemplateBtn: 'ورود خاکی با قالب آماده',
+    seeDemoBtn: 'دیدن شعبده و نمونه زنده',
+    pipelineStatus: 'سیستم روی خطه // اسکیما ردیفه',
+    pipelineCore: 'کوره روشن و داغ',
+    step1Title: 'ایده خودت',
+    step1Desc: 'به زبون خودت بگو چی می‌خوای، بی تعارف.',
+    step2Title: 'سند مانیفست',
+    step2Desc: 'داده‌ها تمیز مرتب میشن، نه کد درهم برهم.',
+    step3Title: 'رندر تر و تمیز',
+    step3Desc: 'تبدیل به HTML و CSS سبک و بدون باگ.',
+    step4Title: 'زیپ و اپ آماده',
+    step4Desc: 'با یه تپ دانلود کن و بذار رو سرور یا گوشی.',
+    roadmapTitle: 'نقشه راه کوره توانا',
+    roadmapDesc: 'فعلاً تمرکزمون روی سایت‌های مستقل تک‌صفحه‌ایه تا بی‌نقص کار کنه؛ ولی بازی و وب‌اپلیکیشن هم تو راهه!',
+    activeMvpTag: 'الان داغ و فعاله',
+    comingSoonTag: 'به‌زودی میاد',
+    futureTag: 'تو برنامه آیندس',
+    howItWorksTitle: 'کار چطور پیش میره؟ بی دردسر و سرراست',
+    howItWorksDesc: 'از ایده تا تحویل پروژه ۷ تا مرحله رفاقتی بیشتر نیست. بدون معطلی و بدون باگ.',
+    magicDemoTitle: 'شعبده کوره: حرف بزن، سایت تحویل بگیر!',
+    magicDemoDesc: 'ببین چطور یه جمله معمولی تبدیل به مانیفست و یه سایت واقعی برای گوشی و کامپیوتر میشه.',
+    openInStudioBtn: 'همینو ببر تو کارگاه و ویرایش کن',
+    previewTab: 'پیش‌نمایش زنده',
+    manifestTab: 'سند مانیفست (JSON)',
+    whyForgeTitle: 'چرا کوره توانا؟ چون اهل ادا و ادعا نیست!',
+    whyForgeDesc: 'نه پول اضافه می‌گیره، نه کد سنگین میده، نه وابسته به سرور خاصیه. کاملاً تو دست خودته.',
+    finalCtaTitle: 'دست رو دست نذار، ایده‌تو همین الان زنده کن',
+    finalCtaDesc: 'کارتو بساز، زیپ رو دانلود کن، مشتری جمع کن و پولتو حلال دربیار.',
+    finalCtaBtn: 'شروع پروژه جدید و تمیز',
+    incomeGuideBtn: '💰 چطور از این کار پول دربیاریم؟',
+    incomeGuideTitle: 'نقشه راه پول درآوردن از سایت، اپ و گیم',
+    incomeGuideSubtitle: 'ترفندهای کف بازار برای درآمد میلیونی از اینترنت با کوره توانا',
+    accessibilityBtn: 'تنظیمات دسترسی و راهنما',
+    androidGradleBtn: 'پکیج Gradle و APK اندروید',
+    templatesBtn: 'قالب‌های نقد',
+    studioBtn: 'ورود به کارگاه',
+    homeBtn: 'صفحه اول',
+    backToHomeTooltip: 'برگرد صفحه اصلی',
+  },
+
+  // English: Punchy, street-smart, friendly, zero corporate BS!
+  en: {
+    dir: 'ltr',
+    brandSubtitle: 'Street-Smart Digital Product Forge',
+    badgeMvp: 'Hey friend! The Forge is fired up and ready to roll',
+    heroTitle1: 'Drop your idea;',
+    heroTitleHighlight: 'Get a kick-ass product!',
+    heroSubtitle: 'Forget boring dashboards and confusing code jargon. Pitch your idea in plain words, and Forge crafts a lightning-fast standalone site with real ZIP and Android APK outputs. Hit download and own it!',
+    ideaInputPlaceholder: 'e.g. A slick wedding venue site with pricing, gallery, and booking...',
+    startBuildingBtn: "Let's Forge It!",
+    quickIdeasLabel: 'Fresh starter ideas:',
+    quickIdeas: [
+      'Luxury Wedding & Banquet Hall',
+      'Skin Care & Aesthetics Clinic',
+      'Engineering & Business Firm',
+      'Creative Design Studio Portfolio',
+    ],
+    emptyOrTemplateBtn: 'Jump in with starter templates',
+    seeDemoBtn: 'Watch the live magic demo',
+    pipelineStatus: 'pipeline active // zero friction',
+    pipelineCore: 'FORGE ENGINE HOT',
+    step1Title: 'Your Raw Idea',
+    step1Desc: 'Describe what you need in plain everyday words.',
+    step2Title: 'Clean Manifest',
+    step2Desc: 'Structured data only. Zero messy code bloat.',
+    step3Title: 'Clean Rendering',
+    step3Desc: 'Ultra-fast semantic HTML and pure CSS.',
+    step4Title: 'Real ZIP & APK',
+    step4Desc: 'Download once, host anywhere, zero subscription traps.',
+    roadmapTitle: 'Forge Master Roadmap',
+    roadmapDesc: 'Our current MVP nails standalone one-page websites with absolute perfection. Games and web apps are dropping next!',
+    activeMvpTag: 'Live & Fired Up',
+    comingSoonTag: 'Dropping Soon',
+    futureTag: 'On the Horizon',
+    howItWorksTitle: 'How It Works: No Fluff, Pure Action',
+    howItWorksDesc: 'Seven crystal-clear milestones from your first spark to a ready-to-deploy zip archive.',
+    magicDemoTitle: 'The Moment of Magic: Talk → Build → Live',
+    magicDemoDesc: 'See how a casual business pitch instantly becomes structured data and a fully responsive live website.',
+    openInStudioBtn: 'Open this demo in Studio',
+    previewTab: 'Live Interactive Preview',
+    manifestTab: 'Manifest Data (JSON)',
+    whyForgeTitle: 'Why Tavana Forge? No Gimmicks, Just Power',
+    whyForgeDesc: 'Mobile-first, manifest-driven, vendor-lock-free, and accessible for everyone.',
+    finalCtaTitle: "Stop overthinking. Let's build your thing today.",
+    finalCtaDesc: 'Forge your site, grab the zip, ship it to the world, and make your money.',
+    finalCtaBtn: 'Start Brand New Project',
+    incomeGuideBtn: '💰 How to Make Real Money Online',
+    incomeGuideTitle: 'The Blueprint: Making Cash with Sites, Apps & Games',
+    incomeGuideSubtitle: 'Real street-smart monetization strategies with Tavana Forge',
+    accessibilityBtn: 'Accessibility & Guide',
+    androidGradleBtn: 'Android Gradle & APK',
+    templatesBtn: 'Templates',
+    studioBtn: 'Enter Studio',
+    homeBtn: 'Homepage',
+    backToHomeTooltip: 'Back to Homepage',
+  },
+
+  // Arabic: حوارية، طبيعية، ودودة وقريبة للقلب
+  ar: {
+    dir: 'rtl',
+    brandSubtitle: 'ورشة بناء المنتجات الرقمية الذكية',
+    badgeMvp: 'أهلاً يا غالي! كورة توانى مشتعلة وجاهزة لخدمتك',
+    heroTitle1: 'هات فكرتك يا بطل؛',
+    heroTitleHighlight: 'وخذ موقعك جاهز ومرتب!',
+    heroSubtitle: 'انسَ التعقيد ووجع راس البرمجة. قول فكرتك ببساطة، وإحنا نحولها لموقع سريع ومستقل بملف ZIP وتطبيق أندرويد جاهز. حمّل وابدأ شغلك مباشرة!',
+    ideaInputPlaceholder: 'مثلاً: موقع راقي لقاعة أفراح مع الأسعار ورقم التواصل...',
+    startBuildingBtn: 'يلا نبني سوا!',
+    quickIdeasLabel: 'أفكار جاهزة للتجربة:',
+    quickIdeas: [
+      'موقع قاعة أفراح ومناسبات فاخرة',
+      'صفحة لعيادة جلدية وتجميل',
+      'موقع شركة هندسية وتجارية',
+      'معرض أعمال استوديو تصميم',
+    ],
+    emptyOrTemplateBtn: 'الدخول بقالب جاهز',
+    seeDemoBtn: 'شوف العرض الحي والسحر',
+    pipelineStatus: 'النظام شغال // البيانات مضبوطة',
+    pipelineCore: 'الكورة مشتعلة وجاهزة',
+    step1Title: 'فكرتك البسيطة',
+    step1Desc: 'احكي فكرتك بلغتك اليومية وبدون تكلف.',
+    step2Title: 'سند المانيفست',
+    step2Desc: 'تنظيم البيانات بدون أكواد ملخبطة.',
+    step3Title: 'رندر سريع ونظيف',
+    step3Desc: 'صفحات HTML و CSS خفيفة ومستجيبة.',
+    step4Title: 'ملف ZIP وتطبيق APK',
+    step4Desc: 'تحميل مباشر بدون أي اشتراكات خفية.',
+    roadmapTitle: 'مسارات المنتجات في توانا',
+    roadmapDesc: 'نركز الآن على المواقع المستقلة بأعلى جودة، والألعاب وتطبيقات الويب قادمة في الطريق!',
+    activeMvpTag: 'متاح وشغال الآن',
+    comingSoonTag: 'قريباً جداً',
+    futureTag: 'في خطة المستقبل',
+    howItWorksTitle: 'كيف يشتغل الكورة؟ خطوة بخطوة وبكل سهولة',
+    howItWorksDesc: 'سبع خطوات واضحة من الفكرة حتى استلام الموقع جاهز للنشر.',
+    magicDemoTitle: 'لحظة السحر: من الفكرة إلى الموقع المباشر',
+    magicDemoDesc: 'شوف كيف الوصف البسيط يتحول لصفحة حقيقية متناسقة مع الجوال والكمبيوتر.',
+    openInStudioBtn: 'تعديل هذا النموذج في الورشة',
+    previewTab: 'معاينة حية',
+    manifestTab: 'بيانات المانيفست (JSON)',
+    whyForgeTitle: 'ليش تختار كورة توانى؟ لأنها عملية وبدون لف ودوران',
+    whyForgeDesc: 'سريعة على الجوال، ملكك بالكامل، وخالية من أي قيود أو اشتراكات.',
+    finalCtaTitle: 'لا تضيع وقت، ابدأ مشروعك واكسب منه اليوم',
+    finalCtaDesc: 'ابنِ موقعك، حمّل الملف، وانطلق لكسب العملاء والأرباح.',
+    finalCtaBtn: 'ابدأ مشروع جديد',
+    incomeGuideBtn: '💰 كيف تكسب فلوس من المواقع والألعاب؟',
+    incomeGuideTitle: 'دليل تحقيق الأرباح الحقيقية من الإنترنت',
+    incomeGuideSubtitle: 'استراتيجيات عملية لتحقيق دخل مضمون باستخدام توانى',
+    accessibilityBtn: 'إمكانية الوصول والدليل',
+    androidGradleBtn: 'حزمة Gradle وأندرويد',
+    templatesBtn: 'القوالب',
+    studioBtn: 'دخول الورشة',
+    homeBtn: 'الرئيسية',
+    backToHomeTooltip: 'العودة للرئيسية',
+  },
+
+  // Spanish: Cercano, de tú a tú, callejero, sin rodeos
+  es: {
+    dir: 'ltr',
+    brandSubtitle: 'La Forja Digital para Creadores',
+    badgeMvp: '¡Qué tal, crack! La forja está encendida y lista',
+    heroTitle1: 'Suelta tu idea;',
+    heroTitleHighlight: '¡Llévate un producto de verdad!',
+    heroSubtitle: 'Olvídate de rollos técnicos y paneles aburridos. Cuéntanos qué quieres en cristiano, y la Forja te arma una web ultrarrápida con descarga en ZIP y paquete Android APK. ¡Descarga y a facturar!',
+    ideaInputPlaceholder: 'Ej: Una web chula para salón de bodas con precios y contacto...',
+    startBuildingBtn: '¡A forjar se ha dicho!',
+    quickIdeasLabel: 'Ideas listas para usar:',
+    quickIdeas: [
+      'Salón de Bodas y Eventos VIP',
+      'Clínica de Estética y Piel',
+      'Empresa de Ingeniería y Obras',
+      'Portafolio de Estudio Creativo',
+    ],
+    emptyOrTemplateBtn: 'Entrar con plantilla de arranque',
+    seeDemoBtn: 'Ver la magia en directo',
+    pipelineStatus: 'sistema activo // cero rodeos',
+    pipelineCore: 'FORJA AL MÁXIMO',
+    step1Title: 'Tu Idea Directa',
+    step1Desc: 'Dilo como hablas con un colega.',
+    step2Title: 'Manifiesto Limpio',
+    step2Desc: 'Puros datos bien estructurados, nada de código basura.',
+    step3Title: 'Render Impecable',
+    step3Desc: 'HTML5 semántico y CSS puro que vuela.',
+    step4Title: 'ZIP y APK Listos',
+    step4Desc: 'Descarga directa para subir a donde te dé la gana.',
+    roadmapTitle: 'Hoja de Ruta de Tavana Forge',
+    roadmapDesc: 'El MVP domina webs de una sola página. ¡Los juegos 2D y las webapps están en camino!',
+    activeMvpTag: 'Activo y a tope',
+    comingSoonTag: 'Muy pronto',
+    futureTag: 'En camino',
+    howItWorksTitle: 'Cómo Funciona: Al Grano y Sin Rodeos',
+    howItWorksDesc: 'Siete pasos sencillos para transformar una chispa en un producto descargable.',
+    magicDemoTitle: 'Momento de Magia: Hablas → Se crea → Listo',
+    magicDemoDesc: 'Mira cómo una frase casual se convierte en un sitio web adaptable al instante.',
+    openInStudioBtn: 'Abrir y editar en el Estudio',
+    previewTab: 'Vista Previa Interactiva',
+    manifestTab: 'Datos Manifiesto (JSON)',
+    whyForgeTitle: '¿Por qué Tavana Forge? Porque no te vende humo',
+    whyForgeDesc: 'Móvil primero, sin suscripciones trampa y con código 100% tuyo.',
+    finalCtaTitle: 'Deja de darle vueltas y lanza tu proyecto hoy',
+    finalCtaDesc: 'Crea tu página, descarga el ZIP y empieza a ganar dinero de verdad.',
+    finalCtaBtn: 'Empezar Proyecto Nuevo',
+    incomeGuideBtn: '💰 Cómo Ganar Pasta con Webs, Apps y Juegos',
+    incomeGuideTitle: 'Guía Práctica para Facturar en Internet',
+    incomeGuideSubtitle: 'Estrategias de calle para monetizar tus creaciones con Tavana Forge',
+    accessibilityBtn: 'Accesibilidad y Guía',
+    androidGradleBtn: 'Gradle y APK Android',
+    templatesBtn: 'Plantillas',
+    studioBtn: 'Entrar al Estudio',
+    homeBtn: 'Inicio',
+    backToHomeTooltip: 'Volver a inicio',
+  },
+
+  // Chinese: 亲切、地道、接地气、务实实用
+  zh: {
+    dir: 'ltr',
+    brandSubtitle: '接地气的数字产品铸造工坊',
+    badgeMvp: '朋友你好！塔瓦纳铸造炉已全力启动，进来坐！',
+    heroTitle1: '说出你的想法；',
+    heroTitleHighlight: '直接带走现成产品！',
+    heroSubtitle: '告别繁琐代码和虚头巴脑的后台。用大白话聊聊你的业务，铸造工坊即刻为你生成独立快速的网页，支持真ZIP和安卓APK打包。一键下载，完全属于你！',
+    ideaInputPlaceholder: '例如：想要一个婚宴高端会所网站，带菜单、画廊和预约电话...',
+    startBuildingBtn: '立即开工打造！',
+    quickIdeasLabel: '现成好点子：',
+    quickIdeas: [
+      '豪华婚礼与宴会庄园',
+      '专业皮肤医美诊所',
+      '工程与商务服务公司',
+      '创意设计工作室作品集',
+    ],
+    emptyOrTemplateBtn: '使用预置模版进入',
+    seeDemoBtn: '查看实况演示奇迹',
+    pipelineStatus: '流水线运转正常 // 规范标准',
+    pipelineCore: '引擎火力全开',
+    step1Title: '你的原始点子',
+    step1Desc: '用平时聊天的大实话描述需求。',
+    step2Title: '规范数据清单',
+    step2Desc: '纯净结构化清单，杜绝乱七八糟的冗余。',
+    step3Title: '极速纯净渲染',
+    step3Desc: '语义化HTML与轻巧CSS，加载如飞。',
+    step4Title: '真ZIP与安卓包',
+    step4Desc: '直接导出离线包与APK，绝无订阅捆绑。',
+    roadmapTitle: '塔瓦纳工坊产品蓝图',
+    roadmapDesc: '当前MVP专注打造极致纯粹的单页网站。2D小游戏与PWA应用即将登场！',
+    activeMvpTag: '当前火热运行中',
+    comingSoonTag: '敬请期待',
+    futureTag: '未来规划',
+    howItWorksTitle: '运转流程：拒绝拖沓，干脆利落',
+    howItWorksDesc: '从灵感到可部署的压缩包，七步清晰透明搞定。',
+    magicDemoTitle: '奇迹瞬间：说话 → 生成 → 实况预览',
+    magicDemoDesc: '看大白话如何瞬间转化为标准化数据并在手机和电脑上流畅交互。',
+    openInStudioBtn: '在工坊中直接编辑此演示',
+    previewTab: '实况交互预览',
+    manifestTab: '清单数据 (JSON)',
+    whyForgeTitle: '为什么选塔瓦纳？没有花架子，全是硬实力',
+    whyForgeDesc: '手机优先设计，清单为唯一真理，无任何厂商捆绑。',
+    finalCtaTitle: '别再犹豫，现在就让好点子落地成金',
+    finalCtaDesc: '打造页面，下载ZIP，承接客户，赚取真金白银。',
+    finalCtaBtn: '开启全新项目',
+    incomeGuideBtn: '💰 如何通过网站、App与游戏变现搞钱？',
+    incomeGuideTitle: '互联网搞钱攻略：做网站、做App与小游戏赚钱',
+    incomeGuideSubtitle: '接地气的实战变现秘籍，用塔瓦纳铸造炉实现财富增长',
+    accessibilityBtn: '无障碍与新手指南',
+    androidGradleBtn: '安卓Gradle与APK打包',
+    templatesBtn: '模版库',
+    studioBtn: '进入工坊',
+    homeBtn: '首页',
+    backToHomeTooltip: '返回首页',
+  },
+
+  // Russian: Душевно, по-простому, по-пацански, без воды и пафоса
+  ru: {
+    dir: 'ltr',
+    brandSubtitle: 'Народная кузница цифровых продуктов',
+    badgeMvp: 'Здорово, друг! Кузница Тавана разогрета до красна',
+    heroTitle1: 'Закидывай идею;',
+    heroTitleHighlight: 'Забирай готовый продукт!',
+    heroSubtitle: 'Забудь про заумный кодинг и душные админки. Объясни на пальцах, что нужно, а кузница выдаст ультрабыстрый сайт с честным ZIP-архивом и Android APK. Скачивай и владей на все сто!',
+    ideaInputPlaceholder: 'Например: Стильный сайт для банкетного зала с ценами и контактами...',
+    startBuildingBtn: 'Погнали ковать!',
+    quickIdeasLabel: 'Готовые рабочие идеи:',
+    quickIdeas: [
+      'Банкетный зал и премиум свадьбы',
+      'Клиника эстетической косметологии',
+      'Инженерно-строительная компания',
+      'Портфолио креативной дизайн-студии',
+    ],
+    emptyOrTemplateBtn: 'Зайти с готового шаблона',
+    seeDemoBtn: 'Глянуть живое демо',
+    pipelineStatus: 'пайплайн в строю // без лагов',
+    pipelineCore: 'КУЗНИЦА В ОГНЕ',
+    step1Title: 'Твоя мысль',
+    step1Desc: 'Объясни своими словами, без лишней зауми.',
+    step2Title: 'Чистый манифест',
+    step2Desc: 'Четкие структурированные данные без мусора.',
+    step3Title: 'Честный рендер',
+    step3Desc: 'Семантический HTML5 и CSS, летающий на смартфонах.',
+    step4Title: 'ZIP и готовый APK',
+    step4Desc: 'Прямая выгрузка без привязки к чужим подпискам.',
+    roadmapTitle: 'Дорожная карта кузницы Тавана',
+    roadmapDesc: 'Сейчас оттачиваем одностраничные сайты до идеала. 2D игры и PWA приложения уже на подходе!',
+    activeMvpTag: 'Работает прямо сейчас',
+    comingSoonTag: 'Скоро в деле',
+    futureTag: 'В планах',
+    howItWorksTitle: 'Как это работает: без лишних слов, сразу к делу',
+    howItWorksDesc: 'Семь простых шагов от первой искры до готового архива на руках.',
+    magicDemoTitle: 'Момент магии: Сказал → Собралось → Работает',
+    magicDemoDesc: 'Посмотри, как простая фраза превращается в адаптивный сайт прямо на глазах.',
+    openInStudioBtn: 'Открыть этот проект в мастерской',
+    previewTab: 'Живое интерактивное демо',
+    manifestTab: 'Данные манифеста (JSON)',
+    whyForgeTitle: 'Почему кузница Тавана? Никакой лапши на ушах',
+    whyForgeDesc: 'Заточено под телефон, код полностью твой, ноль скрытых поборов.',
+    finalCtaTitle: 'Хватит откладывать. Запусти свое дело уже сегодня',
+    finalCtaDesc: 'Собери сайт, забери ZIP, привлекай клиентов и зарабатывай честную копейку.',
+    finalCtaBtn: 'Начать новый проект',
+    incomeGuideBtn: '💰 Как поднять денег на сайтах, аппках и играх?',
+    incomeGuideTitle: 'План заработка: реальные деньги на сайтах и играх',
+    incomeGuideSubtitle: 'Практические приемы заработка с кузницей Тавана',
+    accessibilityBtn: 'Доступность и руководство',
+    androidGradleBtn: 'Gradle и APK для Android',
+    templatesBtn: 'Шаблоны',
+    studioBtn: 'В мастерскую',
+    homeBtn: 'Главная',
+    backToHomeTooltip: 'Вернуться на главную',
+  },
+};

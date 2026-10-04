@@ -1,0 +1,6 @@
+{
+  "name": "TAVANA PRODUCT FORGE",
+  "description": "کوره دیجیتال ساخت صفحات وب از ایده تا خروجی کامل و مستقل؛ طراحی موبایل‌محور، پیش‌نمایش زنده و اعتبارسنجی مانیفست.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
