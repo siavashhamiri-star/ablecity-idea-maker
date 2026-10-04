@@ -33,7 +33,9 @@ import {
   Flame,
   Check,
   ArrowRight,
+  Film,
 } from 'lucide-react';
+import { PromoVideoStudioModal } from './PromoVideoStudioModal';
 
 interface ForgeWorkspaceProps {
   initialManifest: SiteManifest;
@@ -59,6 +61,7 @@ export const ForgeWorkspace: React.FC<ForgeWorkspaceProps> = ({
   const [isTemplatesModalOpen, setIsTemplatesModalOpen] = useState(false);
   const [isAddBlockOpen, setIsAddBlockOpen] = useState(false);
   const [isExportZipOpen, setIsExportZipOpen] = useState(false);
+  const [isPromoVideoOpen, setIsPromoVideoOpen] = useState(false);
 
   // Tests & Versioning
   const [testResult, setTestResult] = useState<TestSuiteResult>(() => runManifestTests(manifest));
@@ -225,6 +228,16 @@ export const ForgeWorkspace: React.FC<ForgeWorkspaceProps> = ({
           >
             <History className="w-3.5 h-3.5 text-slate-400" />
             <span className="hidden md:inline">نسخه‌ها</span>
+          </button>
+
+          {/* Promo Video Reel Studio */}
+          <button
+            onClick={() => setIsPromoVideoOpen(true)}
+            className="px-2.5 py-1.5 rounded-lg bg-purple-500/15 hover:bg-purple-500/25 text-purple-300 border border-purple-500/30 text-xs font-bold flex items-center gap-1.5 transition-colors"
+            title="استودیوی تولید ویدیوی ریلز و استوری اینستاگرام"
+          >
+            <Film className="w-3.5 h-3.5 text-purple-400" />
+            <span className="hidden sm:inline">ویدیوی ریلز</span>
           </button>
 
           {/* Real ZIP Export */}
@@ -587,6 +600,12 @@ export const ForgeWorkspace: React.FC<ForgeWorkspaceProps> = ({
       <ExportZipModal
         isOpen={isExportZipOpen}
         onClose={() => setIsExportZipOpen(false)}
+        manifest={manifest}
+      />
+
+      <PromoVideoStudioModal
+        isOpen={isPromoVideoOpen}
+        onClose={() => setIsPromoVideoOpen(false)}
         manifest={manifest}
       />
 

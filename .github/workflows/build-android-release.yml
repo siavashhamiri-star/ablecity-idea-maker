@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
     inputs:
       build_type:
-        description: 'Build Type (release or debug)'
+        description: 'Build Type'
         required: true
         default: 'release'
         type: choice
@@ -25,17 +25,37 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
+      - name: Detect Project Type & Prepare Android Source
+        id: prep
+        run: |
+          if [ -f "settings.gradle.kts" ]; then
+            echo "Standalone Android Gradle project detected."
+            echo "working_dir=." >> $GITHUB_OUTPUT
+          else
+            echo "React Web repository detected. Generating Android project from manifest..."
+            # Setup node to run the project generator
+            npm install
+            npm run generate:android
+            echo "working_dir=android-build" >> $GITHUB_OUTPUT
+          fi
+
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '17'
-          cache: 'gradle'
+          # Note: Caching handled by setup-gradle to prevent cache-hash failures on missing gradle files
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          build-root-directory: ${{ steps.prep.outputs.working_dir }}
 
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
       - name: Grant Execute Permission to Gradle Wrapper
+        working-directory: ${{ steps.prep.outputs.working_dir }}
         run: |
           if [ -f gradlew ]; then
             chmod +x gradlew
@@ -46,6 +66,7 @@ jobs:
 
       - name: Configure Keystore & Signing Secrets
         id: signing_setup
+        working-directory: ${{ steps.prep.outputs.working_dir }}
         run: |
           KEYSTORE_FILE="release-key.jks"
           
@@ -77,14 +98,17 @@ jobs:
           fi
 
       - name: Build Release APK
+        working-directory: ${{ steps.prep.outputs.working_dir }}
         run: |
-          ./gradlew assembleRelease --stacktrace
+          ./gradlew assembleRelease --stacktrace || gradle assembleRelease --stacktrace
 
       - name: Build Release AAB (Android App Bundle for Google Play & Bazaar)
+        working-directory: ${{ steps.prep.outputs.working_dir }}
         run: |
-          ./gradlew bundleRelease --stacktrace
+          ./gradlew bundleRelease --stacktrace || gradle bundleRelease --stacktrace
 
       - name: Verify Artifacts
+        working-directory: ${{ steps.prep.outputs.working_dir }}
         run: |
           echo "=== Built Artifacts ==="
           ls -lh app/build/outputs/apk/release/ || true
@@ -94,12 +118,12 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: tavana-signed-release-apk
-          path: app/build/outputs/apk/release/*.apk
+          path: ${{ steps.prep.outputs.working_dir }}/app/build/outputs/apk/release/*.apk
           retention-days: 14
 
       - name: Upload Signed AAB Bundle
         uses: actions/upload-artifact@v4
         with:
           name: tavana-signed-release-aab
-          path: app/build/outputs/bundle/release/*.aab
+          path: ${{ steps.prep.outputs.working_dir }}/app/build/outputs/bundle/release/*.aab
           retention-days: 14
